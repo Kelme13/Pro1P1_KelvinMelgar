@@ -43,8 +43,24 @@ public class Recursividad {
             return Decimal_Bi(n / 2) + res;
 
         } else {
-            return 1 + "";
+            
+            if(n == 1){
+                return 1 + "";
+            }else
+                return 0 + "";
+            
         }
+        
+        /*
+        En cada llamado obtiene el residuo de ese numero que le envia 
+        y retorna como retorna un String agrego ese residuo de ultimo 
+        para que tengo el orden correcto
+        
+        pero cada vez que llama al metodo lo hace con el cociente de dividirlo por 2
+        
+        pero si ese numero llega a 0 o 1 unicamente retorna ese cociente 
+        
+        */
 
 
     }
@@ -87,40 +103,46 @@ public class Recursividad {
     }
     
     
-    public String imprimirMatriz(int[][] a, int f, int c, String cadena){
+    public String imprimirMatriz(int[][] a, int f, int c, String cadena, int cifras){
         
         
        if(f > 0){
             
             if(c > 0){
-                cadena += a[a.length-1 - f][a[0].length-1 - c] + " ";
+                String formato = "[%0" + cifras + "d]  ";
+                cadena += String.format(formato, a[a.length-1 - f][a[0].length-1 - c]);
                 
-                return imprimirMatriz(a, f, c-1, cadena);
+                return imprimirMatriz(a, f, c-1, cadena, cifras);
                 
                 
             }else{
+                String formato = "[%0" + cifras + "d]%n";
+                cadena += String.format(formato, a[a.length-1 - f][a[0].length-1 - c]);
                 
-                cadena += a[a.length-1 - f][a[0].length-1 - c] + "\n";
-                
-                return imprimirMatriz(a, f-1, a[0].length-1, cadena);
+                return imprimirMatriz(a, f-1, a[0].length-1, cadena, cifras);
                 
             }
             
         }else{
             if(c > 0){
-                cadena += a[a.length-1 - f][a[0].length-1 - c] + " ";
+                String formato = "[%0" + cifras + "d]  ";
+                cadena += String.format(formato, a[a.length-1 - f][a[0].length-1 - c]);
                 
-                return imprimirMatriz(a, f, c-1, cadena);
+                return imprimirMatriz(a, f, c-1, cadena, cifras);
               
                 
             }else{
-                cadena += a[a.length-1 - f][a[0].length-1 - c];
+                String formato = "[%0" + cifras + "d]  ";
+                cadena += String.format(formato, a[a.length-1 - f][a[0].length-1 - c]);
                 return cadena;
                 
             }
         }
             
-        
+        /*
+       agrega un formato agregandole ceros a la izquierda dependiendo del numero mayor
+       de cifras, para que se vea simetrica la matriz ^^
+       */
         
     }
     
@@ -157,13 +179,11 @@ public class Recursividad {
             
             if(j < b[0].length-1){
                 
-                System.out.println("["+i+"]"+"["+j+"]");
                 c[i][j] = rowProduct(a, b, i, j, 0);
                 
                 return multiplicacion(a, b, c, i, j+1);
                 
             }else{
-                System.out.println("\n\n\n");
                 c[i][j] = rowProduct(a, b, i, j, 0);
                 return multiplicacion(a, b, c,i+1, 0 );
             }
@@ -174,12 +194,11 @@ public class Recursividad {
                 
                 c[i][j] = rowProduct(a, b, i, j, 0);
                 
-                System.out.println("["+i+"]"+"["+j+"]");
                 
                 return multiplicacion(a, b, c, i, j+1);
                 
             }else{
-                System.out.println("\n\n\n");
+                
                 c[i][j] = rowProduct(a, b, i, j, 0);
                 
                 

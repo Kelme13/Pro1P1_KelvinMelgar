@@ -127,14 +127,29 @@ public class frameRecursion extends JDialog implements ActionListener{
                 b = recursivos.llenarMatriz(b, b.length-1, b[0].length-1);
                 
                 int[][] c = new int[a.length][b[0].length];
-                
+           
                 int[][] multiplicacion = recursivos.multiplicacion(a, b, c, 0, 0);
+
+
+                int n_mayor = 0;
+
+                for (int i = 0; i < c.length; i++) {
+
+                    for (int j = 0; j < c[0].length; j++) {
+
+                        if (n_mayor < c[i][j]) {
+                            n_mayor = c[i][j];
+                        }
+
+                    }
+                }
+
+                String cad = "" + n_mayor;
+                int cifras = cad.length();
                 
-                multiplicacion = simetria(multiplicacion);
-                
-                String cadena = "MATRIZ A\n" + recursivos.imprimirMatriz(a, a.length-1, a[0].length-1, "");
-                cadena += "\n\nMATRIZ B\n" + recursivos.imprimirMatriz(b, b.length-1, b[0].length-1, "");
-                cadena += "\n\nMULTIPLICACION\n" + recursivos.imprimirMatriz(multiplicacion, multiplicacion.length-1, multiplicacion[0].length-1, "");
+                String cadena = "MATRIZ A\n" + recursivos.imprimirMatriz(a, a.length-1, a[0].length-1, "",1);
+                cadena += "\n\nMATRIZ B\n" + recursivos.imprimirMatriz(b, b.length-1, b[0].length-1, "",1);
+                cadena += "\n\nMULTIPLICACION\n" + recursivos.imprimirMatriz(multiplicacion, multiplicacion.length-1, multiplicacion[0].length-1, "",cifras);
                 
                 JOptionPane.showMessageDialog(this, cadena,
                         "Multiplicacion de Matrices Recursivas", JOptionPane.INFORMATION_MESSAGE);
@@ -146,9 +161,6 @@ public class frameRecursion extends JDialog implements ActionListener{
                 
             }
             
-            
-            
-            
         }
         
         if(e.getSource() == btMenu){
@@ -156,51 +168,6 @@ public class frameRecursion extends JDialog implements ActionListener{
             
         }
        
-    }
-    
-    public int[][] simetria(int[][] c){
-        int n_mayor = 0;
-        
-        for (int i = 0; i < c.length; i++) {
-            
-            for (int j = 0; j < c[0].length; j++) {
-                
-                if(n_mayor < c[i][j])
-                    n_mayor = c[i][j];
-                
-            }
-        }
-        
-        String cad = ""+n_mayor;
-        int cifras = cad.length();
-        
-        System.out.println(cifras);
-        for (int i = 0; i < c.length; i++) {
-            
-            for (int j = 0; j < c[0].length; j++) {
-                
-                String n = ""+c[i][j];
-                if(n.length() < cifras){
-                    
-                    for (int k = 0; k < cifras - n.length(); k++) {
-                        
-                        n = 0 + n;
-                    }
-                    
-                    System.out.print(n + " ");
-                    
-                    c[i][j] = Integer.parseInt(n);
-                    
-                }else
-                    System.out.print(c[i][j]+" ");
-                
-            }
-            
-            System.out.println();
-        }
-        
-        
-        return c;
     }
     
 }

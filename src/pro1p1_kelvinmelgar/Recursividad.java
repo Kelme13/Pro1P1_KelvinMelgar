@@ -138,6 +138,16 @@ public class Recursividad {
             
         }
         
+        /*
+        Se basa en el numero de columnas que cuenta la matriz a para multiplicarlas con 
+        las filas de la matriz b (ya que son del mismo tamaño, en cada llamadado
+        al metodo retorna la sumatoria de todos en la fila a y en la columna de b 
+        gracias al contador "k", cuando este contador sea mayor que el tamaño de
+        la columna de la matriz "a", solamente retorna 0, no altera el valor ya que
+        solamente se estan sumando estos retornos.
+        
+        */
+        
         
     }
     
@@ -177,5 +187,20 @@ public class Recursividad {
             }
         
         
+        /*
+        Primeramente como en el metodo de imprimir y llenar, recorre toda la 
+        matriz "c" y en cada recorrido (llamado) requiere la matriz a, la matriz b, la matriz c
+        el indice de la matriz c de la fila y columnas-
+        Ya que incialmente estos indice inician en (0, 0)
+        
+        Primero recorre los elementos en cada fila (columnas) y por eso en el primer caso
+        en cada llamado le suma 1 al indice de las columnas, cuando llega al ultimo 
+        elemento en la columna, llama al metodo de rowProduct con esos indices
+        pero cuando se llama a si mismo le suma 1 a la fila y resetea el indice de la columna
+        a 0, para volver a iniciar el recorrido de las columnas pero en la siguiente fila
+        
+        Ya en el ultimo caso, de las filas recorre las columnas pero en la ultimas ocasion
+        solo asigna el valor de rowProduct en esa posicion y retorna la matriz c .
+        */
     }
 }

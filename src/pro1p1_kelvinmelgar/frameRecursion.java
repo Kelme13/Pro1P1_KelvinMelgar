@@ -100,7 +100,6 @@ public class frameRecursion extends JDialog implements ActionListener{
             this.dispose();
             new frameConversiones(parent, true);
             
-            
         }
         
         if(e.getSource() == btMatrices){
